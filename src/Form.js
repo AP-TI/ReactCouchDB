@@ -3,11 +3,11 @@ import React from 'react';
 export const Form = props => {
 
     const submit = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         let input = {};
         for (let i in event.target.elements) {
             let ele = event.target.elements[i];
-            if (ele.tagName != "INPUT") continue;
+            if (ele.tagName !== "INPUT") continue;
 
             console.log(ele.name, ele.value);
             input[ele.name] = ele.value;
