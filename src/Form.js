@@ -3,7 +3,7 @@ import React from 'react';
 export const Form = props => {
 
     const submit = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
         let input = {};
         for (let i in event.target.elements) {
             let ele = event.target.elements[i];
@@ -13,7 +13,7 @@ export const Form = props => {
             input[ele.name] = ele.value;
         }
         
-        fetch(`http://localhost:5984/producten/${input.naam}`, {method: "PUT", body: JSON.stringify(input)}).then(response => response.json()).then(json => console.log(json))
+        fetch(`http://localhost:5984/producten/${input.naam}`, {method: "PUT", body: JSON.stringify(input)}).then(response => response.json()).then(json => props.updateData())
     };
 
     return(

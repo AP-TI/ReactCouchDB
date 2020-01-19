@@ -7,27 +7,21 @@ export class Productenlijst extends Component {
     }
 
     componentDidMount = () => {
-        fetch('http://localhost:5984/producten/_all_docs')
-            .then(response => response.json())
-            .then(json => {
-                for (let prop in json.rows) {
-                    fetch(`http://localhost:5984/producten/${json.rows[prop].key}`)
-                        .then(response => response.json())
-                        .then(json => {
-                            let temp = this.state.producten;
-                            temp.push(json);
-                            this.setState({producten: temp});
-                        })
-                }
-            });
+        this.props.updateData();
+        console.log(this.props)
     };
 
+    
+
     render() {
+
+        
         return (
             <div>
                 <ul>
                     {
-                        this.state.producten.map((product, idx) => <li key={idx}>{product.naam}</li>)
+
+                        this.props.producten.map((product, idx) => <li key={idx}>{product.naam}</li>)
                     }
                 </ul>
             </div>
